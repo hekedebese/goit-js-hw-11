@@ -20,6 +20,8 @@ function handleSubmit(event) {
 
   clearGallery();
 
+  showLoader();
+
   getImagesByQuery(value)
     .then(({ hits }) => {
       console.log(hits);
@@ -33,5 +35,9 @@ function handleSubmit(event) {
     })
     .catch(error => {
       console.log(error.message);
+    })
+    .finally(() => {
+      event.target.reset();
+      hideLoader();
     });
 }
